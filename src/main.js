@@ -1,7 +1,17 @@
 import { createServer } from 'http';
 
-const server = createServer();
+const server = createServer((request, response) => {
+    switch (request.url) {
+        case '/status': {
 
-server.listen(8000, '127.0.0.1', ()=>{
+            response.writeHead(200);
+            response.write('<h1> OKS </h1>');
+            response.end();
+            return;
+        }
+    }
+});
+
+server.listen(8000, '127.0.0.1', () => {
     console.log('Server is listening at http://127.0.0.1:8000.');
 });
