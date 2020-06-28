@@ -7,11 +7,17 @@ const server = createServer((request, response) => {
             response.writeHead(200);
             response.write('<h1> OKS </h1>');
             response.end();
-            return;
+            break;
+        }
+        default:{
+            response.writeHead(404, 'Service not found. ');            
+            response.end();
         }
     }
 });
 
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8000;
+const HOSTNAME = process.env.HOSTNAME || '127.0.0.1';
 server.listen(8000, '127.0.0.1', () => {
-    console.log('Server is listening at http://127.0.0.1:8000.');
+    console.log(`Server is listening at http://${HOSTNAME}:${PORT}.`);
 });
